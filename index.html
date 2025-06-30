@@ -69,7 +69,7 @@
       <input type="number" id="peso" placeholder="Ingresa tu peso en kg">
       <button onclick="verificarPeso()">Comprobar</button>
     </div>
-    <p id="mensaje"></p>
+    <h1 id="mensaje"></h1>
   </div>
 
   <audio id="alerta" src="audio2.mp3"></audio>
@@ -80,12 +80,12 @@
       const mensaje = document.getElementById("mensaje");
       const sonido = document.getElementById("alerta");
 
-      if (peso > 70) {
-        mensaje.textContent = "¡Peso excedido!";
+      if (peso > 65) {
+        mensaje.textContent = "Mucho Peso";
         mensaje.style.color = "red";
         sonido.play();
       } else {
-        mensaje.textContent = "Peso normal.";
+        mensaje.textContent = "👍🏻";
         mensaje.style.color = "green";
         sonido.pause();
         sonido.currentTime = 0;
