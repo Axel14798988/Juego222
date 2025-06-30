@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Medidor de Peso</title>
+  <style>
+    body{
+      background-color: rgb(173, 231, 231);
+      align-items: center;
+    }
+    .contenedor2{
+      text-align: center;
+
+    }
+    .contenedor {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 20px;
+    }
+    button{
+      border: 10px;
+      border-radius: 10px;
+      background-color: blue;
+    }
+    input{
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Medidor de Peso</h2>
+  <div class="contenedor2">
+  <div class="contenedor">
+    <input type="number" id="peso" placeholder="Ingresa tu peso en kg">
+    <button onclick="verificarPeso()">Comprobar</button>
+  </div>
+  </div>
+  <p id="mensaje"></p>
+
+  <!-- Sonido de alerta -->
+  <audio id="alerta" src="audio.mp3"></audio>
+
+  <script>
+    function verificarPeso() {
+      const peso = parseFloat(document.getElementById("peso").value);
+      const mensaje = document.getElementById("mensaje");
+      const sonido = document.getElementById("alerta");
+
+      if (peso > 70) {
+        mensaje.textContent = "¡Peso excedido!";
+        mensaje.style.color = "red";
+        sonido.play(); // Reproducir sonido
+      } else {
+        mensaje.textContent = "Peso normal.";
+        mensaje.style.color = "green";
+        sonido.pause(); // Pausar si se estaba reproduciendo
+        sonido.currentTime = 0;
+      }
+    }
+  </script>
+
+</body>
+</html>
