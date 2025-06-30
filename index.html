@@ -2,29 +2,64 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Medidor de Peso</title>
   <style>
-    body{
+    body {
       background-color: rgb(173, 231, 231);
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
       align-items: center;
     }
-    .contenedor2{
-      text-align: center;
 
+    h2 {
+      margin-top: 20px;
     }
+
+    .contenedor2 {
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
     .contenedor {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: 20px;
+      margin: 20px 0;
+      justify-content: center;
     }
-    button{
-      border: 10px;
+
+    input, button {
+      padding: 10px;
+      font-size: 1rem;
       border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    button {
       background-color: blue;
+      color: white;
+      cursor: pointer;
     }
-    input{
-      border-radius: 10px;
+
+    #mensaje {
+      font-size: 1.2rem;
+      margin: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .contenedor {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      input, button {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -32,12 +67,12 @@
 
   <h2>Medidor de Peso</h2>
   <div class="contenedor2">
-  <div class="contenedor">
-    <input type="number" id="peso" placeholder="Ingresa tu peso en kg">
-    <button onclick="verificarPeso()">Comprobar</button>
+    <div class="contenedor">
+      <input type="number" id="peso" placeholder="Ingresa tu peso en kg">
+      <button onclick="verificarPeso()">Comprobar</button>
+    </div>
+    <p id="mensaje"></p>
   </div>
-  </div>
-  <p id="mensaje"></p>
 
   <!-- Sonido de alerta -->
   <audio id="alerta" src="audio.mp3"></audio>
@@ -51,11 +86,11 @@
       if (peso > 70) {
         mensaje.textContent = "¡Peso excedido!";
         mensaje.style.color = "red";
-        sonido.play(); // Reproducir sonido
+        sonido.play();
       } else {
         mensaje.textContent = "Peso normal.";
         mensaje.style.color = "green";
-        sonido.pause(); // Pausar si se estaba reproduciendo
+        sonido.pause();
         sonido.currentTime = 0;
       }
     }
