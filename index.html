@@ -73,11 +73,13 @@
   </div>
 
   <audio id="alerta" src="audio2.mp3"></audio>
+  <audio id="alerta" src="audio2.mp3"></audio>
 
   <script>
     function verificarPeso() {
       const peso = parseFloat(document.getElementById("peso").value);
       const mensaje = document.getElementById("mensaje");
+      const sonido = document.getElementById("alerta");
       const sonido = document.getElementById("alerta");
 
       if (peso > 65) {
