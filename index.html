@@ -49,6 +49,14 @@
       margin: 10px;
     }
 
+    #video-alerta {
+      display: none;
+      margin-top: 20px;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
     @media (max-width: 600px) {
       .contenedor {
         flex-direction: column;
@@ -70,27 +78,45 @@
       <button onclick="verificarPeso()">Comprobar</button>
     </div>
     <h1 id="mensaje"></h1>
+    <div style="display: flex; justify-content: center;">
+      <video id="video-alerta" width="320" height="240" autoplay muted loop playsinline>
+        <source src="video.mp4" type="video/mp4">
+        Tu navegador no soporta video.
+      </video>
+    </div>
   </div>
 
-  <audio id="alerta" src="audio2.mp3" ></audio>
-  
+  <audio id="alerta" src="audio2.mp3"></audio>
 
   <script>
     function verificarPeso() {
       const peso = parseFloat(document.getElementById("peso").value);
       const mensaje = document.getElementById("mensaje");
       const sonido = document.getElementById("alerta");
-      
+      const video = document.getElementById("video-alerta");
 
-      if (peso > 65) {
+      if (isNaN(peso) || peso <= 35) {
+        mensaje.textContent = "Peso no válido";
+        mensaje.style.color = "orange";
+        sonido.pause();
+        sonido.currentTime = 0;
+        video.pause();
+        video.style.display = "none";
+      } else if (peso > 65) {
         mensaje.textContent = "Mucho Peso";
         mensaje.style.color = "red";
         sonido.play();
+        video.style.display = "block";
+        video.play();
+        video.controls = false;
+        video.addEventListener('pause', () => video.play());
       } else {
         mensaje.textContent = "👍🏻";
         mensaje.style.color = "green";
         sonido.pause();
         sonido.currentTime = 0;
+        video.pause();
+        video.style.display = "none";
       }
     }
   </script>
